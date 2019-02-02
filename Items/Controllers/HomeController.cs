@@ -53,11 +53,30 @@ namespace Items.Controllers
             return View();
         }
 
-        public IActionResult Poista()
+        public IActionResult Poista(int? itemId)  // hakasuluisssa tieto, mistä parametrit tulevat
         {
-            ViewData["Message"] = "Poista tietokannasta.";
-            return View();
+            ItemdataContext context = new ItemdataContext();
+
+            bool OnkoOlemassa = context.Item.Any(u => u.ItemId == itemId);  
+            switch (OnkoOlemassa)
+            {
+                case false:
+                    break;
+                default:
+                    Item tavara = context.Item.Find(itemId);
+                    context.Remove(tavara); 
+                    context.SaveChanges();
+                    ViewData["ItemId"] = itemId;
+                    ViewData["Tavara"] = tavara.ItemName;
+                    return View();         
+            }
+         
+            ViewData["ItemId"] = itemId;
+            return View("JoPoistettu");
+
         }
+
+    
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

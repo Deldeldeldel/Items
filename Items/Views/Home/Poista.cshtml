@@ -1,6 +1,9 @@
-﻿@{
-    ViewData["Title"] = "Poista";
+﻿@model IEnumerable<Items.Models.Item>
+@{
+    ViewData["Title"] = "On poistettu";
+
 }
 <h2>@ViewData["Title"]</h2>
 
-<p>Use this page to detail your site's privacy policy.</p>
+
+<p>Tavara numero @ViewData["ItemId"] nimeltä "@ViewData["Tavara"]" on poistettu.</p>

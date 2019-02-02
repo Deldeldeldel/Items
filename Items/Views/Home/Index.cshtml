@@ -4,12 +4,33 @@
     ViewData["Title"] = "Home Page";
 }
 
-<h2>Tavarat</h2>
+<h1>Tavarat</h1>
+
+<h2>Hae</h2>
+
+<form asp-controller="Home" asp-action="Hae">
+    <p>
+        Hakusana: <input type="text" name="SearchString">
+        <input type="submit" value="Hae" />
+    </p>
+</form>
+
+<h2>Poista</h2>
+
+<form asp-controller="Home" asp-action="Poista">
+    <p>
+        Poista tavara, jonka numero on <input type="text" name="itemId">
+        <input type="submit" value="Poista" />
+    </p>
+</form>
 
 
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemId)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.ItemName)
             </th>
@@ -21,14 +42,17 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ItemName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ItemLocation)
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemLocation)
+            </td>
+        </tr>
         }
     </tbody>
 </table>
