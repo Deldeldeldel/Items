@@ -1,11 +1,18 @@
 ﻿@model IEnumerable<Items.Models.Item>
 
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Haku";
 }
 
-<h2>Tavarat</h2>
 
+<h2>Hae</h2>
+
+<form asp-controller="Home" asp-action="Hae">
+    <p>
+        Hakusana: <input type="text" name="SearchString">
+        <input type="submit" value="Filter" />
+    </p>
+</form>
 
 <table class="table">
     <thead>
@@ -32,6 +39,5 @@
         }
     </tbody>
 </table>
-
 
 

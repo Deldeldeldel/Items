@@ -5,32 +5,57 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Items.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Items.Controllers
 {
+
+   
     public class HomeController : Controller
     {
         public IActionResult Index()
         {
+            ItemdataContext context = new ItemdataContext();
+            return View(context.Item);
+        }
+
+        public async Task<IActionResult> Hae(string searchString)
+        {
+            ItemdataContext context = new ItemdataContext();
+            var tavara = from t in context.Item
+                         select t;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                tavara = tavara.Where(s => s.ItemName.Contains(searchString));
+            }
+
+            return View(await tavara.ToListAsync());
+        }
+        //public IActionResult Hae(string itemname)
+        //{
+        //    ViewData["Message"] = "Hakulomake";
+        //    // UUSI
+        //    ItemdataContext context = new ItemdataContext();
+        //    if (itemname != null)
+        //    {
+        //        Item tavara = context.Item.Find(itemname);
+        //        return View(tavara);
+        //    }
+        //    return null;
+        //    //return View();
+        //}
+
+        public IActionResult Lisaa()
+        {
+            ViewData["Message"] = "Lisää tietokantaan.";
+
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult Poista()
         {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
+            ViewData["Message"] = "Poista tietokannasta.";
             return View();
         }
 
@@ -39,5 +64,8 @@ namespace Items.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+       
+      
+
     }
 }
