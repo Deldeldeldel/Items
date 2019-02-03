@@ -31,7 +31,9 @@ namespace Items.Models
         {
             modelBuilder.Entity<Item>(entity =>
             {
-                entity.Property(e => e.ItemId).ValueGeneratedNever();
+                //ValueGeneratedNever() muutettu ValueGeneratedOnAdd(), jotta tuottaa itse id-keyn (taulu myös muutettu SET IDENTITY_INSERT Item ON +
+                // Is Identity Yes, identity increment 1
+                entity.Property(e => e.ItemId).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.ItemBox).HasMaxLength(50);
 
@@ -54,7 +56,9 @@ namespace Items.Models
 
             modelBuilder.Entity<Kayttaja>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                //ValueGeneratedNever() muutettu ValueGeneratedOnAdd(), jotta tuottaa itse id-keyn (taulu myös muutettu SET IDENTITY_INSERT Item ON +
+                // Is Identity Yes, identity increment 1
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Name)
                     .IsRequired()
