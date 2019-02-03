@@ -24,18 +24,29 @@
     </p>
 </form>
 
+<form asp-controller="Home" asp-action="Lisaa">
+    <p>
+        Lisää tavara
+        
+        <input type="text" name="itemName" label="Name">
+        <input type="text" name="itemLocation" label="Location">
+        <input type="text" name="itemClass" label="Class">
+        <input type="submit" value="Lisää" />
+    </p>
+</form>
+
 
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ItemId)
+                Tavaran numero
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ItemName)
+                Nimi
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ItemLocation)
+                Paikka
             </th>
         </tr>
     </thead>
