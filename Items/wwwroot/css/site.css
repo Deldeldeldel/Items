@@ -4,6 +4,24 @@ body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
+.navbar-default {
+    background-color: aliceblue;
+    font-size: 150%;
+    background-image: none;
+    border: none;
+    
+}
+.navbar-fixed-top {
+    min-height: 70px;  
+}
+a {
+    display: inline-block;
+    vertical-align: middle;
+}
+.navbar-brand {
+    font-size: 200%;
+    font-weight: bold;
+}
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */

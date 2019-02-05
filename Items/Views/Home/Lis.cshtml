@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Items.Models.Item>
+@{
+    ViewData["Title"] = "Lis";
+}
+
+<h2>Lis</h2>
+
+<form asp-controller="Home" asp-action="Lisaa">
+    <p>
+        Lisää tavara
+
+        <input type="text" name="itemName" label="Name">
+        <input type="text" name="itemLocation" label="Location">
+        <input type="text" name="itemClass" label="Class">
+        <input type="submit" value="Lisää" />
+    </p>
+</form>

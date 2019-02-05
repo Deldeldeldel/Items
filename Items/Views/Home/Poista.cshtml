@@ -5,5 +5,12 @@
 }
 <h2>@ViewData["Title"]</h2>
 
+<h2>Poista</h2>
 
+<form asp-controller="Home" asp-action="Poista">
+    <p>
+        Poista tavara, jonka numero on <input type="text" name="itemId">
+        <input type="submit" value="Poista" />
+    </p>
+</form>
 <p>Tavara numero @ViewData["ItemId"] nimeltä "@ViewData["Tavara"]" on poistettu.</p>

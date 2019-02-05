@@ -18,6 +18,12 @@ namespace Items.Controllers
             ItemdataContext context = new ItemdataContext();
             return View(context.Item);
         }
+        public IActionResult Lis()
+        {
+            ViewData["Message"] = "Lisäyssivu.";
+
+            return View();
+        }
 
         public async Task<IActionResult> Hae(string searchString)  // LISÄÄ ELSE, jos stringiä ei löydy
         {
@@ -33,26 +39,27 @@ namespace Items.Controllers
             return View(await tavara.ToListAsync());
         }
 
-        public async Task<IActionResult> Lisaa( string itemName, string itemLocation, string itemClass)
+        
+        public async Task<IActionResult> Lisaa(string itemName, string itemLocation, string itemClass)
         {
-            //int itemId, aikaisemmin tuli parametrina
-            ItemdataContext context = new ItemdataContext();
-            //try
-            //{
-            //    int ItemId = Convert.ToInt32(itemId);
-            //}
-            //catch (FormatException e)
-            //{
-            //    Console.WriteLine("Input string is not a sequence of digits.");
-            //}
-            Item tavara = new Item() { ItemName = itemName, ItemLocation = itemLocation , ItemClass = itemClass};
-            context.Item.Add(tavara);
-            await context.SaveChangesAsync();
-           // ViewData["ItemId"] = itemId;
-            ViewData["ItemName"] = itemName;
 
-            //return Ok(tavara);
-            return View();
+            ItemdataContext context = new ItemdataContext();
+
+            Item tavara = new Item() { ItemName = itemName, ItemLocation = itemLocation, ItemClass = itemClass };
+
+            if (tavara.ItemName != null && tavara.ItemLocation != null && tavara.ItemClass != null)
+            {
+                context.Item.Add(tavara);
+                ViewData["ItemName"] = itemName;
+                await context.SaveChangesAsync();
+                // return Ok(tavara);
+                //return View(await context.SaveChangesAsync());
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Lis");
+            }
         }
 
         //public IActionResult Hae(string itemname)
@@ -70,33 +77,54 @@ namespace Items.Controllers
         //}
 
 
-
-
-
-
         public IActionResult Poista(int? itemId)  // hakasuluisssa tieto, mistä parametrit tulevat
         {
             ItemdataContext context = new ItemdataContext();
 
-            bool OnkoOlemassa = context.Item.Any(u => u.ItemId == itemId);  
+            bool OnkoOlemassa = context.Item.Any(u => u.ItemId == itemId);
             switch (OnkoOlemassa)
             {
                 case false:
                     break;
                 default:
                     Item tavara = context.Item.Find(itemId);
-                    context.Remove(tavara); 
+                    context.Remove(tavara);
                     context.SaveChanges();
                     ViewData["ItemId"] = itemId;
                     ViewData["Tavara"] = tavara.ItemName;
-                    return View();         
+                    return View();
             }
-         
+
             ViewData["ItemId"] = itemId;
             return View("JoPoistettu");
 
         }
-      
+
+
+
+        //public IActionResult Poista(int? itemId)  // hakasuluisssa tieto, mistä parametrit tulevat
+        //{
+        //    ItemdataContext context = new ItemdataContext();
+
+        //    bool OnkoOlemassa = context.Item.Any(u => u.ItemId == itemId);  
+        //    switch (OnkoOlemassa)
+        //    {
+        //        case false:
+        //            break;
+        //        default:
+        //            Item tavara = context.Item.Find(itemId);
+        //            context.Remove(tavara); 
+        //            context.SaveChanges();
+        //            ViewData["ItemId"] = itemId;
+        //            ViewData["Tavara"] = tavara.ItemName;
+        //            return View();         
+        //    }
+
+        //    ViewData["ItemId"] = itemId;
+        //    return View("JoPoistettu");
+
+        //}
+
 
         //public IActionResult Lisaa()  // parametrina oletettu tuleva muoto
         //{
