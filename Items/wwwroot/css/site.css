@@ -10,16 +10,25 @@ body {
 .container {
     padding-top: 20px;    
 }
-h3 {
+
+/*
+    .top-title {
     padding-top: 30px;
 }
+
+*/
+
 
 .table {
     margin-top: 30px;
     border: 1px solid #2B7A78;
 }
-thead {
-    border: #2B7A78;
+
+.table td {
+    border-bottom: 1px solid #2B7A78;
+}
+.table th {
+      border-bottom: 2px solid  #2B7A78 !important;
 }
 
 .navbar-nav li a {
@@ -66,29 +75,38 @@ ul.nav li.active a {
 .lis {
     margin-bottom: 5px;
     margin-left: 5px;
+    border: none;
 }
-.to_right {
+.pois {
+    border: none;  
+}
+
+.button{
+background-color: #3AAFA9;
+border: none;
+color: #FEFFFF;
+padding: 4px 7px 4px 7px;
+}
+
+.button_to_right {
     float: right;
+    background-color: #3AAFA9;
+    border: none;
+    color: #FEFFFF;
+    padding: 4px 7px 4px 7px;
 }
-/*
-.navbar a:link {
-    color: white;
-    text-decoration: none;
-}
-
-.navbar a:hover {
-    color: black;
-    text-decoration: none;
+.panel-footer {
+    background-color: #DEF2F1;
+    border: 1px solid #2B7A78;
 }
 
-.navbar a:active{
-    color: red;
-    text-decoration: none;
-}
-    */
 .navbar-custom {
     background-color: #3AAFA9;
     border: none;
+    
+}
+.body-content {
+    padding-top:60px;
 }
 
 /* Wrapping element */
