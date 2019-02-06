@@ -3,15 +3,41 @@
     ViewData["Title"] = "Lis";
 }
 
-<h2>Lis</h2>
+<h3>Lisää tavara</h3>
 
 <form asp-controller="Home" asp-action="Lisaa">
     <p>
-        Lisää tavara
-
-        <input type="text" name="itemName" label="Name">
-        <input type="text" name="itemLocation" label="Location">
-        <input type="text" name="itemClass" label="Class">
-        <input type="submit" value="Lisää" />
+        <table>
+            <tr>
+                <td>
+                    Tavaran nimi:
+                </td>
+                <td>
+                    <input type="text" name="itemName" label="Name" class="lis">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Paikka:
+                </td>
+                <td>
+                    <input type="text" name="itemLocation" label="Location" class="lis">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Luokka:
+                </td>
+                <td>
+                    <input type="text" name="itemClass" label="Class" class="lis">
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Lisää" class="to_right" /> 
+                </td>
+            </tr>
+        </table>
     </p>
 </form>

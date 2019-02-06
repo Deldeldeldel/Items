@@ -10,7 +10,6 @@ using Microsoft.EntityFrameworkCore;
 namespace Items.Controllers
 {
 
-   
     public class HomeController : Controller
     {
         public IActionResult Index()
@@ -20,9 +19,16 @@ namespace Items.Controllers
         }
         public IActionResult Lis()
         {
-            ViewData["Message"] = "Lisäyssivu.";
+           // ViewData["Message"] = "Lisäyssivu.";
 
             return View();
+        }
+
+        public IActionResult Pois()
+        {
+            //ViewData["Message"] = "Poistosivu.";
+            ItemdataContext context = new ItemdataContext();
+            return View(context.Item);
         }
 
         public async Task<IActionResult> Hae(string searchString)  // LISÄÄ ELSE, jos stringiä ei löydy
@@ -77,26 +83,53 @@ namespace Items.Controllers
         //}
 
 
-        public IActionResult Poista(int? itemId)  // hakasuluisssa tieto, mistä parametrit tulevat
+        public async Task<IActionResult> Poista(int? itemId)
         {
             ItemdataContext context = new ItemdataContext();
 
-            bool OnkoOlemassa = context.Item.Any(u => u.ItemId == itemId);
-            switch (OnkoOlemassa)
+            bool OnOlemassa = context.Item.Any(u => u.ItemId == itemId);
+            bool EiNull = (itemId != null);
+            if (OnOlemassa && EiNull)
             {
-                case false:
-                    break;
-                default:
-                    Item tavara = context.Item.Find(itemId);
-                    context.Remove(tavara);
-                    context.SaveChanges();
-                    ViewData["ItemId"] = itemId;
-                    ViewData["Tavara"] = tavara.ItemName;
-                    return View();
+                Item tavara = context.Item.Find(itemId);
+                context.Remove(tavara);
+                await context.SaveChangesAsync();
+                ViewData["ItemId"] = itemId;
+                ViewData["Tavara"] = tavara.ItemName;
+                //return Ok(tavara);
+                return View();
             }
+            else if (!OnOlemassa)
+            {
+                ViewData["ItemId"] = itemId;
+                return View("JoPoistettu");
+            }
+            //else if (!EiNull)
+            else
+            {
+                return View("JoPoistettu");
+            }
+            //else
+            //{
+            //    return RedirectToAction("Pois");
+            //}
 
-            ViewData["ItemId"] = itemId;
-            return View("JoPoistettu");
+            //switch (OnkoOlemassa)
+            //{
+            //    case false:
+            //        break;
+            //    default:
+            //        Item tavara = context.Item.Find(itemId);
+            //        context.Remove(tavara);
+            //        await context.SaveChangesAsync();
+            //        ViewData["ItemId"] = itemId;
+            //        ViewData["Tavara"] = tavara.ItemName;
+            //        //return Ok(tavara);
+            //        return View();
+            //}
+
+            //ViewData["ItemId"] = itemId;
+            //return View("JoPoistettu");
 
         }
 

@@ -1,16 +1,16 @@
 ﻿@model IEnumerable<Items.Models.Item>
 
 @{
-    ViewData["Title"] = "Haku";
+    ViewData["Title"] = "Etsi tavara";
 }
 
 
-<h2>Hae</h2>
+<h3>Etsi tavara</h3>
 
 <form asp-controller="Home" asp-action="Hae">
     <p>
-        Hakusana: <input type="text" name="SearchString">
-        <input type="submit" value="Filter" />
+        Etsi tavaran nimellä tai nimen osalla: <input type="text" name="SearchString">
+        <input type="submit" value="Etsi" />
     </p>
 </form>
 
@@ -18,24 +18,30 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ItemName)
+                Tavaran numero
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ItemLocation)
+                Nimi
+            </th>
+            <th>
+                Paikka
             </th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ItemName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ItemLocation)
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemLocation)
+            </td>
+        </tr>
         }
     </tbody>
 </table>

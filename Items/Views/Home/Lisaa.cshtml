@@ -1,11 +1,14 @@
 ﻿@model IEnumerable<Items.Models.Item>
 @{
-    ViewData["Title"] = "Lisää";
+    
 }
-<h2>@ViewData["Title"]</h2>
+
 <h3>@ViewData["Message"]</h3>
 
 
 <p>Tavara nimeltä "@ViewData["ItemName"]" on lisätty.</p>
+<div class="panel-footer add-item-form">
+    @await Html.PartialAsync("Lis")
+</div>
 
 

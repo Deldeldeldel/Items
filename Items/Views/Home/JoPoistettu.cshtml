@@ -1,8 +1,9 @@
 ﻿@model IEnumerable<Items.Models.Item>
 @{
-    ViewData["Title"] = "Tätä tavaraa ei ole.";
+    ViewData["Title"] = "Tavaraa ei ole.";
 }
 
-<h2>Tavaraa ei löydy.</h2>
-<p>Tavaraa numero @ViewData["ItemId"] ei ole.</p>
+<h3>Tavaraa ei löydy.</h3>
+<p>Numerolla @ViewData["ItemId"] ei löydy tavaraa tai se on jo poistettu.</p>
+
 

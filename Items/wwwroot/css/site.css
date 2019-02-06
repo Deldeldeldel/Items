@@ -3,24 +3,73 @@ for details on configuring this project to bundle and minify static web assets. 
 body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: 'Roboto', sans-serif;
+    background-color: #DEF2F1;
+    color: #17252A;
 }
-.navbar-default {
-    background-color: aliceblue;
-    font-size: 150%;
-    background-image: none;
-    border: none;
+.container {
+    padding-top: 20px;
     
 }
-.navbar-fixed-top {
-    min-height: 70px;  
+h3 {
+    padding-top: 30px;
 }
-a {
-    display: inline-block;
-    vertical-align: middle;
+
+.table {
+    margin-top: 30px;
+    border: 1px solid #2B7A78;
 }
-.navbar-brand {
-    font-size: 200%;
+thead {
+    border: #2B7A78;
+}
+
+.navbar-brand,
+.navbar-nav li a {
+    line-height: 60px;
+    height: 60px;
+    padding-top: 0;
+    font-size: 150%;
     font-weight: bold;
+    
+    
+}
+ul.nav li a, ul.nav li a:visited {
+    color: #fff !important;
+}
+
+    ul.nav li a:hover, ul.nav li a:active {
+        color: #17252A !important;
+    }
+
+ul.nav li.active a {
+    color: #000 !important;
+}
+.lis {
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+.to_right {
+    float: right;
+}
+/*
+.navbar a:link {
+    color: white;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.navbar a:active{
+    color: red;
+    text-decoration: none;
+}
+    */
+.navbar-custom {
+    background-color: #3AAFA9;
+    border: none;
 }
 
 /* Wrapping element */

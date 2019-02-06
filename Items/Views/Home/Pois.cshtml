@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Items.Models.Item>
+@{
+    ViewData["Title"] = "Pois";
+}
+
+<h3>Poista tavara</h3>
+
+<form asp-controller="Home" asp-action="Poista">
+    <p>
+        Poista tavara, jonka numero on <input type="text" name="itemId">
+        <input type="submit" value="Poista" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Tavaran numero
+            </th>
+            <th>
+                Nimi
+            </th>
+            <th>
+                Paikka
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ItemId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ItemName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ItemLocation)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
