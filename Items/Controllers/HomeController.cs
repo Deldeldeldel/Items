@@ -19,24 +19,21 @@ namespace Items.Controllers
         }
         public IActionResult Lis()
         {
-           // ViewData["Message"] = "Lisäyssivu.";
-
             return View();
         }
 
         public IActionResult Pois()
-        {
-            //ViewData["Message"] = "Poistosivu.";
+        {   
             ItemdataContext context = new ItemdataContext();
             return View(context.Item);
         }
 
-        public async Task<IActionResult> Hae(string searchString)  // LISÄÄ ELSE, jos stringiä ei löydy
+        public async Task<IActionResult> Hae(string searchString)  // VOISI LISÄÄ ELSE, jos stringiä ei löydy
         {
             ItemdataContext context = new ItemdataContext();
             var tavara = from t in context.Item
                          select t;
-
+        
             if (!String.IsNullOrEmpty(searchString))
             {
                 tavara = tavara.Where(s => s.ItemName.Contains(searchString));
@@ -58,8 +55,7 @@ namespace Items.Controllers
                 context.Item.Add(tavara);
                 ViewData["ItemName"] = itemName;
                 await context.SaveChangesAsync();
-                // return Ok(tavara);
-                //return View(await context.SaveChangesAsync());
+                // return Ok(tavara); 
                 return View();
             }
             else
@@ -114,22 +110,7 @@ namespace Items.Controllers
             //    return RedirectToAction("Pois");
             //}
 
-            //switch (OnkoOlemassa)
-            //{
-            //    case false:
-            //        break;
-            //    default:
-            //        Item tavara = context.Item.Find(itemId);
-            //        context.Remove(tavara);
-            //        await context.SaveChangesAsync();
-            //        ViewData["ItemId"] = itemId;
-            //        ViewData["Tavara"] = tavara.ItemName;
-            //        //return Ok(tavara);
-            //        return View();
-            //}
-
-            //ViewData["ItemId"] = itemId;
-            //return View("JoPoistettu");
+           
 
         }
 
@@ -159,7 +140,7 @@ namespace Items.Controllers
         //}
 
 
-        //public IActionResult Lisaa()  // parametrina oletettu tuleva muoto
+        //public IActionResult Lisaa()  
         //{
         //    ItemdataContext context = new ItemdataContext();
 
